@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="btn1">setTimeout</button>
+    <button id="btn2">requestAnimationFrame</button>
+    <button id="btn3">animation</button>
+
+    <script>
+      document.querySelector("#btn1").addEventListener("click", () => {
+        let start = performance.now();
+        setTimeout(() => {
+          console.log("setTimeout", performance.now() - start);
+        });
+      });
+
+      document.querySelector("#btn2").addEventListener("click", function () {
+        let el = this;
+
+        let start = performance.now();
+
+        function animation() {
+          let p = performance.now();
+          let d = p - start;
+          start = p;
+          el.textContent = d;
+          requestAnimationFrame(animation);
+        }
+
+        requestAnimationFrame(animation);
+      });
+
+      document.querySelector("#btn3").addEventListener("click", function () {
+        let el = this;
+
+        let start = performance.now(); // 함수 실행 전
+
+        function animation() {
+          // 4ms ~ 5ms -> 1/200s. 초당 200번 내용을 바꿈
+          let p = performance.now(); // 함수 실행 후
+          let d = p - start; // 함수 실행 후 - 함수 실행 전
+          start = p; // 함수 실행 후 = 함수 실행 전
+          el.textContent = d;
+          setTimeout(animation);
+          // 60Hz기준
+          // setTimeout(animation, 1000 / 60);
+        }
+
+        animation();
+      });
+    </script>
+  </body>
+</html>
