@@ -8,7 +8,7 @@
 
 <p>
 <a href="https://github.com/batboy118">
-  <img src="https://github.com/batboy118.png" width="100">
+  <img src="https://github.com/aimingbro.png" width="100">
 </a>
 <a href="https://github.com/wherehows">
   <img src="https://github.com/wherehows.png" width="100">
